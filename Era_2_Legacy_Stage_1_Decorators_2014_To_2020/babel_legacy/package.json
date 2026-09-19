@@ -1,0 +1,21 @@
+{
+  "name": "babel_legacy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test-ex4": "npx babel-node ex4.js",
+    "test-ex5": "npx babel-node ex5.js",
+    "test-ex6": "npx babel-node ex6.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@babel/cli": "^8.0.6",
+    "@babel/core": "^8.0.6",
+    "@babel/node": "^8.0.6",
+    "@babel/plugin-proposal-decorators": "^8.0.2"
+  }
+}

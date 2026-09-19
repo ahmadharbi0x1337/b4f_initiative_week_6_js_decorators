@@ -1,0 +1,79 @@
+
+- ?? is called The Nullish Coalescing Operator
+Provides a fallback value only when the left side is null or undefined
+
+// Example 1: Fallback when value is undefined
+let userScore: number | undefined;
+let finalScore = userScore ?? 10; 
+console.log(finalScore); // 10
+
+// Example 2: How it differs from standard OR (||)
+let count = 0;
+
+let resultWithOr = count || 5; 
+// 5 (Because || treats 0 as false)
+
+let resultWithNullish = count ?? 5; 
+// 0 (Because ?? ONLY triggers on null or undefined)
+
+//////////          //////////          //////////          //////////          //////////      
+//////////          //////////          //////////          //////////          //////////      
+//////////          //////////          //////////          //////////          //////////          
+
+- ! is called The Non-Null Assertion Operator
+
+Tells the TypeScript compiler: "Trust me, this value is definitely NOT null or undefined 
+so stop warning me.
+
+Example: 
+function processName(name: string | null) {
+  // Without '!', TypeScript flags an error: Object is possibly 'null'.
+  // With '!', you tell TypeScript to ignore the risk:
+  let upper = name!.toUpperCase(); 
+  console.log(upper);
+}
+
+// Common use case: Class properties initialized outside constructor (like in frameworks)
+class UserProfile {
+  name!: string; // Tells TS: "I won't set this in constructor, but it will exist at runtime"
+}
+
+# Warning: Using ! doesn't prevent runtime errors. 
+If the variable actually turns out to be null at runtime.
+your program will still crash with a TypeError.
+
+
+//////////          //////////          //////////          //////////          //////////      
+//////////          //////////          //////////          //////////          //////////      
+//////////          //////////          //////////          //////////          //////////      
+
+
+- ? is called The Optional Chaining
+Safely reads nested properties of an object without 
+throwing an error if an intermediate property is null or undefined
+
+Example1: 
+type User = {
+  profile?: {
+    address?: {
+      city: string;
+    };
+  };
+};
+
+let user: User = {};
+
+// Without optional chaining (Requires manual checking):
+// let city = user.profile && user.profile.address ? user.profile.address.city : undefined;
+
+// With optional chaining:
+let city = user?.profile?.address?.city; 
+console.log(city); // undefined (No runtime crash!)
+
+
+Example2:
+// Safe array access
+let firstItem = items?.[0];
+
+// Safe function call
+user.onClick?.();
